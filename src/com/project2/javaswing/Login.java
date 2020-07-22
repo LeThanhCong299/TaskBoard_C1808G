@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        
+
     }
 
     /**
@@ -41,9 +41,9 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         usernametf = new javax.swing.JTextField();
-        pwtf = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         alert = new javax.swing.JLabel();
+        pwfield = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Form");
@@ -71,6 +71,12 @@ public class Login extends javax.swing.JFrame {
 
         alert.setText(".");
 
+        pwfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwfieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,7 +93,7 @@ public class Login extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(usernametf, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                                    .addComponent(pwtf)))
+                                    .addComponent(pwfield)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(alert)
                                 .addGroup(layout.createSequentialGroup()
@@ -111,7 +117,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(pwtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register)
@@ -125,32 +131,46 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        Connection conn = null;
+        String databaseName = "UserDtb";
+        String url = "jdbc:mysql://localhost:3306/" + databaseName;
+
+        String userName = "root";
+        String password = "chi1matkhau";
+
         try {
             // TODO add your handling code here:
             int check = 1;
-            
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/project2", "root", "root");
+            String pw = String.valueOf(pwfield.getPassword());
+
+            conn = DriverManager.getConnection(url, userName, password);
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select * from USERTABLE");
-            
-            while(rs.next()){
-                if(rs.getString(2).equals(usernametf.getText()) && rs.getString(3).equals(pwtf.getText())){
+            ResultSet rs = st.executeQuery("select * from tbUser");
+
+            while (rs.next()) {
+                if (rs.getString(2).equals(usernametf.getText()) && rs.getString(3).equals(pw)) {
                     check = 0;
                     break;
                 }
             }
-            
-            if(check == 1)
-                alert.setText("Wrong password or username ");                       
-            else
+
+            if (check == 1) {
+                alert.setText("Wrong password or username ");
+            } else {
                 alert.setText("Login successfull");
-            
-            
+                new TaskForm().setVisible(true);
+                this.setVisible(false);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_loginActionPerformed
+
+    private void pwfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pwfieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +213,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton login;
-    private javax.swing.JTextField pwtf;
+    private javax.swing.JPasswordField pwfield;
     private javax.swing.JButton register;
     private javax.swing.JTextField usernametf;
     // End of variables declaration//GEN-END:variables

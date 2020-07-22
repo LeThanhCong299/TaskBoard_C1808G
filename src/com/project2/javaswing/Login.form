@@ -40,7 +40,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="usernametf" pref="164" max="32767" attributes="0"/>
-                                  <Component id="pwtf" max="32767" attributes="0"/>
+                                  <Component id="pwfield" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -75,7 +75,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pwtf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pwfield" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -121,8 +121,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="usernametf">
     </Component>
-    <Component class="javax.swing.JTextField" name="pwtf">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -141,6 +139,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="."/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="pwfield">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pwfieldActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
