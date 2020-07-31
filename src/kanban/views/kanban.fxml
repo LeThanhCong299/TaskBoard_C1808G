@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kanban.controllers.KanbanController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" text="Save" />
+                  <MenuItem fx:id="openMenuItem" mnemonicParsing="false" text="Open" />
+                  <Menu mnemonicParsing="false" text="Export">
+                     <items>
+                        <MenuItem fx:id="exportToDoMenuItem" mnemonicParsing="false" text="&quot;To do&quot; list" />
+                        <MenuItem fx:id="exportInPrMenuItem" mnemonicParsing="false" text="&quot;In progress&quot; list" />
+                        <MenuItem fx:id="exportDoneMenuItem" mnemonicParsing="false" text="&quot;Done&quot; list" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Import">
+                     <items>
+                        <MenuItem fx:id="importToDoMenuItem" mnemonicParsing="false" text="&quot;To do&quot; list" />
+                        <MenuItem fx:id="importInPrMenuItem" mnemonicParsing="false" text="&quot;In progress&quot; list" />
+                        <MenuItem fx:id="importDoneMenuItem" mnemonicParsing="false" text="&quot;Done&quot; list" />
+                     </items>
+                  </Menu>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="About" />
+         </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="addTaskButton" mnemonicParsing="false" text="Add new task" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </Pane>
+   </bottom>
+   <center>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="TO DO" textAlignment="CENTER" />
+                  <ListView fx:id="toDoListView" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="IN PROGRESS" textAlignment="CENTER" />
+                  <ListView fx:id="inPrListView" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DONE" textAlignment="CENTER" />
+                  <ListView fx:id="doneListView" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </center>
+</BorderPane>
