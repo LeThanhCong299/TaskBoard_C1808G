@@ -14,3 +14,5 @@
 # Push up and pull
 + Sau khi làm xong, dùng lệnh git push để cập nhật nhánh
 + chuyển sang nhánh chính ( master ) để pull request
+# Link project (update theo ngày)
+https://github.com/phong-afk/TaskBoard_C1808G

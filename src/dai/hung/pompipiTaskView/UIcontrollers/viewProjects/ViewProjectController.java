@@ -220,6 +220,25 @@ public class ViewProjectController {
             stage.setScene(new Scene(root, 800, 600));
         });
     }
+    private void editProjectTile(String title,String UUID)
+    {
+        try {
+            FXMLLoader load = new FXMLLoader(getClass().getResource("/fxml/widgets/project-tile.fxml"));
+            load.setController(new Tile(title,UUID, (name) -> {
+                goToPage(name,UUID);
+            }));
+            for (Node project : projectList.getChildren())
+            {
+                if (project.getId().equals(UUID))
+                {
+                    int index = projectList.getChildren().indexOf(project);
+                    projectList.getChildren().set(index, load.load());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Go the kanban page of each task
